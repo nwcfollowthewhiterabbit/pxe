@@ -1,0 +1,15 @@
+#!ipxe
+menu Custom PXE Boot Menu
+item --gap -- ------------------------
+item ubuntu_24.04_local Boot Ubuntu 24.04 (Local)
+item return Return to Main Menu
+choose --default return --timeout 5000 target && goto ${target}
+
+:ubuntu_24.04_local
+kernel http://192.168.1.81:8081/iso/ubuntu-24.04.1/vmlinuz
+initrd http://192.168.1.81:8081/iso/ubuntu-24.04.1/initrd.gz
+imgargs vmlinuz initrd=initrd.gz boot=casper netboot=nfs debug nfsroot=192.168.1.81:/nfs/ubuntu-24.04.1
+boot
+
+:return
+chain /config/menus/menu.ipxe

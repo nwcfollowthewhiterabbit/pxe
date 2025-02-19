@@ -1,0 +1,7 @@
+ubuntu-24.04-live:
+  path: http://192.168.1.81/iso/linux/ubuntu-24.04.1
+  files:
+    - linux
+    - initrd.gz
+  os: ubuntu
+  version: '24.04'

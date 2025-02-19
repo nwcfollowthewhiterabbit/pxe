@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  netboot:
+    image: ghcr.io/netbootxyz/netbootxyz:latest
+    container_name: netboot
+    restart: always
+    ports:
+      - "69:69/udp"
+      - "8080:80"
+    volumes:
+      - /home/pxe/cfg:/config
+
+  http-server:
+    image: httpd:latest
+    container_name: pxe-http
+    restart: always
+    ports:
+      - "8081:80"
+    volumes:
+      - /home/pxe/iso:/usr/local/apache2/htdocs/iso
+
+

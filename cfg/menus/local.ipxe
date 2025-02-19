@@ -1,0 +1,13 @@
+#!ipxe
+menu Custom PXE Boot Menu
+item --gap -- ------------------------ 
+item ubuntu-local Boot Ubuntu 22.04 (Local)
+item return Return to Main Menu
+choose --default return --timeout 5000 target && goto ${target}
+
+:ubuntu-local
+kernel http://192.168.1.81:8081/iso/ubuntu-24.04.1-live-server-amd64.iso
+boot
+
+:return
+chain /config/menus/menu.ipxe
